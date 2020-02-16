@@ -5,7 +5,7 @@ let search_users = function (location, distance, dataArray) {
         let lat = utils.degrees_to_radians(location[0]);
         let long = utils.degrees_to_radians(location[1]);
 
-        var final_data = [];
+        var final_data = new Array()
         dataArray.forEach(element => {
             ulat = utils.degrees_to_radians(Number(element.latitude));
             ulong = utils.degrees_to_radians(Number(element.longitude));
@@ -14,11 +14,26 @@ let search_users = function (location, distance, dataArray) {
                 final_data.push(element);
             }
         });
-        return final_data
+        final_data.sort(compare)
+        var result = new Array();
+        final_data.forEach(element => {
+            result.push({user_id:element.user_id,name:element.name})
+        });
+
+        return result
     } catch (err) {
         throw err;
     }
 };
 
+function compare( a, b ) {
+    if ( a.user_id < b.user_id ){
+      return -1;
+    }
+    if ( a.user_id > b.user_id ){
+      return 1;
+    }
+    return 0;
+  }
 
 module.exports = search_users;
