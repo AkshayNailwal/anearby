@@ -25,4 +25,4 @@ Import index.js or install via npm as {  npm install anearby  }
      ---// arguments defaulted as per specification.
 
   --- Function return a promise
-  --- Resolved promise returns array of user data objects
+  --- Resolved promise returns array of sorted user data objects
